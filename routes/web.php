@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TipodevehiculoController;
+use App\Http\Controllers\TipodecargaController;
 use App\Http\Controllers\NacionalidadController;
 use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\ConductorController;
@@ -49,6 +50,10 @@ Route::get('Nacionalidad',[NacionalidadController::class,'index']);
 Route::get('Nacionalidad/create',[NacionalidadController::class,'create']);
 Route::get('Nacionalidad/{Nacionalidad}',[NacionalidadController::class,'show']);
 
+Route::get('tiposdecargas',[TipodecargaController::class,'index']);
+Route::get('tiposdecargas/create',[TipodecargaController::class,'create']);
+Route::get('tiposdecargas/{tipodecarga}',[TipodecargaController::class,'show']);
+
 Route::get('Vehiculos',[VehiculoController::class,'index']);
 Route::get('Vehiculos/create',[VehiculoController::class,'create']);
 Route::get('Vehiculos/{Vehiculo}',[VehiculoController::class,'show']);
@@ -66,3 +71,6 @@ Route::get('Empresas/{empresa}',[EmpresaController::class,'show']);
 Route::get('Recibos',[ReciboController::class,'index']);
 Route::get('Recibos/recibo',[ReciboController::class,'create']);
 Route::get('Recibos/recibo{}',[ReciboController::class,'show']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
